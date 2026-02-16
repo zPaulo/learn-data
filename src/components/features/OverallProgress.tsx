@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, CheckCircle2, FolderKanban, Clock } from 'lucide-react';
+import { Target, CheckCircle2, FolderKanban, Clock, Flame } from 'lucide-react';
 import { useProgressStore } from '@/stores/useProgressStore';
+import { useStreak } from '@/hooks/useStreak';
 import { roadmap } from '@/data/roadmap';
 import { calculateOverallProgress, getCategoriesCompleted, getEstimatedHoursRemaining, formatHoursEstimate } from '@/lib/utils';
 import { Card } from '@/components/ui/Card';
@@ -15,6 +16,7 @@ export function OverallProgress() {
   const categoriesCompleted = getCategoriesCompleted(roadmap, completedSkills);
   const totalCategories = roadmap.categories.length;
   const estimatedHours = getEstimatedHoursRemaining(roadmap, completedSkills);
+  const { currentStreak } = useStreak();
 
   const circumference = 2 * Math.PI * 58;
   const offset = circumference - (overall.percentage / 100) * circumference;
@@ -42,11 +44,11 @@ export function OverallProgress() {
       bgColor: 'bg-violet-500/10',
     },
     {
-      label: 'Estimativa',
-      value: formatHoursEstimate(estimatedHours),
-      icon: Clock,
-      color: 'text-amber-400',
-      bgColor: 'bg-amber-500/10',
+      label: 'Sequencia',
+      value: currentStreak > 0 ? `${currentStreak} dia${currentStreak > 1 ? 's' : ''}` : 'Comece hoje!',
+      icon: Flame,
+      color: 'text-orange-400',
+      bgColor: 'bg-orange-500/10',
     },
   ];
 
