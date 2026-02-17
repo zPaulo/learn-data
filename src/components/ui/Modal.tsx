@@ -38,7 +38,7 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-md"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -49,13 +49,13 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
             aria-modal="true"
             aria-labelledby="modal-title"
             className={cn(
-              'relative w-full max-w-lg rounded-2xl border border-white/10 bg-gray-900/95 backdrop-blur-xl p-6 shadow-2xl',
+              'relative w-full max-w-lg rounded-2xl border border-white/[0.08] bg-gray-900/98 backdrop-blur-2xl p-6 shadow-2xl shadow-black/40',
               className
             )}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            exit={{ opacity: 0, y: 20, scale: 0.97 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className="flex items-center justify-between mb-4">
               <h3 id="modal-title" className="text-lg font-semibold text-white">{title}</h3>
