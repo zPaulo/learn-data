@@ -122,9 +122,12 @@ export function ExportImportModal({ isOpen, onClose }: ExportImportModalProps) {
 
       {tab === 'export' ? (
         <div>
-          <pre className="text-[11px] text-gray-400 bg-white/5 rounded-xl p-4 max-h-48 overflow-auto mb-4 border border-white/5">
+          <pre className="text-[11px] text-gray-400 bg-black/30 rounded-xl p-4 max-h-48 overflow-auto mb-4 border border-white/[0.06] font-mono leading-relaxed">
             {jsonString}
           </pre>
+          <p className="text-[10px] text-gray-600 mb-3">
+            {completedSkills.length} habilidades e {completedProjects.length} projetos serao exportados.
+          </p>
           <div className="flex gap-2">
             <Button variant="secondary" size="sm" onClick={handleCopy} className="flex-1">
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
