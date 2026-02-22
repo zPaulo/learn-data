@@ -49,23 +49,22 @@ export function Tooltip({ content, position = 'top', children, className }: Tool
       onBlur={hide}
     >
       {children}
-      {visible && (
+      <div
+        role="tooltip"
+        className={cn(
+          'absolute z-50 px-2.5 py-1.5 text-[11px] text-gray-200 bg-gray-800/95 backdrop-blur-sm rounded-lg whitespace-nowrap shadow-xl shadow-black/30 pointer-events-none transition-all duration-200',
+          positionClasses[position],
+          visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        )}
+      >
+        {content}
         <div
-          role="tooltip"
           className={cn(
-            'absolute z-50 px-2.5 py-1.5 text-xs text-gray-200 bg-gray-800 rounded-lg whitespace-nowrap shadow-lg pointer-events-none',
-            positionClasses[position]
+            'absolute w-0 h-0 border-4',
+            arrowClasses[position]
           )}
-        >
-          {content}
-          <div
-            className={cn(
-              'absolute w-0 h-0 border-4',
-              arrowClasses[position]
-            )}
-          />
-        </div>
-      )}
+        />
+      </div>
     </div>
   );
 }
