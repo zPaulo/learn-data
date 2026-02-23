@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FolderKanban } from 'lucide-react';
 import { roadmap } from '@/data/roadmap';
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { OverallProgress } from '@/components/features/OverallProgress';
 import { CategorySection } from '@/components/features/CategorySection';
 import { ProjectCard } from '@/components/features/ProjectCard';
@@ -13,6 +14,12 @@ import { SearchFilter, type DifficultyFilter } from '@/components/features/Searc
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState<DifficultyFilter>('all');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useKeyboardShortcuts([
+    { key: '/', handler: () => searchInputRef.current?.focus() },
+    { key: 'Escape', handler: () => { setSearchQuery(''); setDifficultyFilter('all'); } },
+  ]);
 
   const hasActiveFilter = searchQuery.trim() !== '' || difficultyFilter !== 'all';
 
