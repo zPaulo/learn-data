@@ -68,10 +68,16 @@ export function Sidebar({ onExportClick }: SidebarProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-300 truncate">
+                  <span className={cn(
+                    'text-xs font-medium truncate',
+                    isComplete ? 'text-white' : 'text-gray-300'
+                  )}>
                     {category.title}
                   </span>
-                  <span className="text-[10px] text-gray-500 ml-2 shrink-0">
+                  <span className={cn(
+                    'text-[10px] ml-2 shrink-0 font-medium',
+                    isComplete ? 'text-emerald-400' : 'text-gray-500'
+                  )}>
                     {progress.completed}/{progress.total}
                   </span>
                 </div>
