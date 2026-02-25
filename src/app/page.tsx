@@ -1,22 +1,19 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { useHydration } from '@/hooks/useHydration';
 import { LoginForm } from '@/components/features/LoginForm';
 
 export default function Home() {
   const router = useRouter();
   const { isLoggedIn } = useAuth();
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
+  const hydrated = useHydration();
 
   useEffect(() => {
     if (hydrated && isLoggedIn) {
-      router.push('/dashboard');
+      router.replace('/dashboard');
     }
   }, [hydrated, isLoggedIn, router]);
 
@@ -36,5 +33,5 @@ export default function Home() {
     );
   }
 
-  return <LoginForm onLogin={() => router.push('/dashboard')} />;
+  return <LoginForm onLogin={() => router.replace('/dashboard')} />;
 }
