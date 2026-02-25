@@ -8,6 +8,7 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { ExportImportModal } from '@/components/features/ExportImportModal';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 
 export default function DashboardLayout({
   children,
@@ -43,6 +44,7 @@ export default function DashboardLayout({
         </div>
       </main>
       <MobileNav />
+      <ScrollToTop />
       <ExportImportModal isOpen={showExport} onClose={() => setShowExport(false)} />
     </div>
   );
