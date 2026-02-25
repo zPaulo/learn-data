@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useProgressStore } from '@/stores/useProgressStore';
@@ -8,9 +9,15 @@ import { calculateOverallProgress } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 
 export function Header() {
+  const router = useRouter();
   const { username, logout } = useAuth();
   const completedSkills = useProgressStore((s) => s.completedSkills);
   const overall = calculateOverallProgress(roadmap, completedSkills);
+
+  const handleLogout = () => {
+    logout();
+    router.replace('/');
+  };
 
   return (
     <header className="sticky top-0 z-30 backdrop-blur-md bg-gray-950/80 border-b border-white/5">
@@ -33,7 +40,7 @@ export function Header() {
             <span className="text-[11px] font-medium text-gray-300">{overall.percentage}%</span>
           </div>
 
-          <Button variant="ghost" size="sm" onClick={logout} className="text-gray-400">
+          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-gray-400">
             <LogOut className="w-4 h-4" />
             <span className="hidden sm:inline">Sair</span>
           </Button>
