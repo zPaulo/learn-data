@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { useHydration } from '@/hooks/useHydration';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { MobileNav } from '@/components/layout/MobileNav';
@@ -15,16 +16,12 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const { isLoggedIn } = useAuth();
-  const [hydrated, setHydrated] = useState(false);
+  const hydrated = useHydration();
   const [showExport, setShowExport] = useState(false);
 
   useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
     if (hydrated && !isLoggedIn) {
-      router.push('/');
+      router.replace('/');
     }
   }, [hydrated, isLoggedIn, router]);
 
