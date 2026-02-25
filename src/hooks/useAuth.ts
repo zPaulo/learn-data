@@ -1,6 +1,7 @@
 'use client';
 
 import { useProgressStore } from '@/stores/useProgressStore';
+import { useHydration } from '@/hooks/useHydration';
 
 export function useAuth() {
   const username = useProgressStore((s) => s.username);
@@ -9,12 +10,14 @@ export function useAuth() {
   const loginLocal = useProgressStore((s) => s.loginLocal);
   const loginWithDb = useProgressStore((s) => s.loginWithDb);
   const logout = useProgressStore((s) => s.logout);
+  const hydrated = useHydration();
 
   return {
     username,
     createdAt,
     isLoggedIn: !!username,
     isDbMode,
+    hydrated,
     loginLocal,
     loginWithDb,
     logout,
