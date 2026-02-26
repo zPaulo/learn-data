@@ -40,6 +40,18 @@ export function getDaysSinceStart(createdAt: string): number {
   return Math.max(1, Math.floor(diff / (1000 * 60 * 60 * 24)));
 }
 
+export function getSkillCountByDifficulty(
+  skills: { difficulty: 'beginner' | 'intermediate' | 'advanced' }[]
+): { beginner: number; intermediate: number; advanced: number } {
+  return skills.reduce(
+    (acc, skill) => {
+      acc[skill.difficulty]++;
+      return acc;
+    },
+    { beginner: 0, intermediate: 0, advanced: 0 }
+  );
+}
+
 export function getProjectReadiness(
   skillIds: string[],
   completedSkills: string[]

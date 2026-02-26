@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Database, Table, Terminal, Code, BarChart3, PieChart, GitBranch, Users, ExternalLink, Play, BookOpen, GraduationCap, FileText } from 'lucide-react';
 import { useProgressStore } from '@/stores/useProgressStore';
-import { calculateCategoryProgress, cn } from '@/lib/utils';
+import { calculateCategoryProgress, getSkillCountByDifficulty, cn } from '@/lib/utils';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { SkillItem } from './SkillItem';
 import type { Category } from '@/types';
@@ -32,6 +32,7 @@ export function CategorySection({ category }: CategorySectionProps) {
   const toggleSkill = useProgressStore((s) => s.toggleSkill);
 
   const progress = calculateCategoryProgress(category, completedSkills);
+  const difficultyCount = getSkillCountByDifficulty(category.skills);
   const Icon = iconMap[category.icon] || Database;
 
   return (
@@ -58,7 +59,18 @@ export function CategorySection({ category }: CategorySectionProps) {
               {progress.completed}/{progress.total}
             </span>
           </div>
-          <p className="text-xs text-gray-400 mb-3">{category.description}</p>
+          <p className="text-xs text-gray-400 mb-2">{category.description}</p>
+          <div className="flex gap-3 mb-3 text-[10px]">
+            {difficultyCount.beginner > 0 && (
+              <span className="text-emerald-400">{difficultyCount.beginner} iniciante{difficultyCount.beginner > 1 ? 's' : ''}</span>
+            )}
+            {difficultyCount.intermediate > 0 && (
+              <span className="text-yellow-400">{difficultyCount.intermediate} intermediário{difficultyCount.intermediate > 1 ? 's' : ''}</span>
+            )}
+            {difficultyCount.advanced > 0 && (
+              <span className="text-rose-400">{difficultyCount.advanced} avançado{difficultyCount.advanced > 1 ? 's' : ''}</span>
+            )}
+          </div>
           <ProgressBar
             percentage={progress.percentage}
             gradientClasses={category.color}
