@@ -62,9 +62,13 @@ export default function DashboardPage() {
       ))}
 
       {hasActiveFilter && filteredCategories.length === 0 && (
-        <p className="text-center text-sm text-gray-500 py-12">
-          Nenhuma habilidade encontrada para essa busca.
-        </p>
+        <div className="text-center py-16">
+          <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center mx-auto mb-4">
+            <FolderKanban className="w-6 h-6 text-gray-600" />
+          </div>
+          <p className="text-sm text-gray-400 mb-1">Nenhuma habilidade encontrada</p>
+          <p className="text-xs text-gray-600">Tente buscar por outro termo ou limpar os filtros.</p>
+        </div>
       )}
 
       {/* Portfolio Projects */}
