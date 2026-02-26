@@ -1,4 +1,4 @@
-import { Category, Roadmap } from '@/types';
+import { Category, Roadmap, Skill } from '@/types';
 
 export function cn(...classes: (string | boolean | undefined | null)[]): string {
   return classes.filter(Boolean).join(' ');
@@ -50,6 +50,28 @@ export function getSkillCountByDifficulty(
     },
     { beginner: 0, intermediate: 0, advanced: 0 }
   );
+}
+
+const HOURS_PER_SKILL: Record<Skill['difficulty'], number> = {
+  beginner: 2,
+  intermediate: 4,
+  advanced: 8,
+};
+
+export function getEstimatedHoursRemaining(
+  roadmap: Roadmap,
+  completedSkills: string[]
+): number {
+  const allSkills = roadmap.categories.flatMap((cat) => cat.skills);
+  const remaining = allSkills.filter((s) => !completedSkills.includes(s.id));
+  return remaining.reduce((total, skill) => total + HOURS_PER_SKILL[skill.difficulty], 0);
+}
+
+export function formatHoursEstimate(hours: number): string {
+  if (hours === 0) return 'Completo!';
+  if (hours < 10) return `~${hours}h restantes`;
+  const weeks = Math.round(hours / 10);
+  return `~${hours}h (~${weeks} semana${weeks > 1 ? 's' : ''} a 10h/sem)`;
 }
 
 export function getProjectReadiness(

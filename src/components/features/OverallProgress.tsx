@@ -1,21 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, CheckCircle2, FolderKanban, Calendar } from 'lucide-react';
+import { Target, CheckCircle2, FolderKanban, Clock } from 'lucide-react';
 import { useProgressStore } from '@/stores/useProgressStore';
 import { roadmap } from '@/data/roadmap';
-import { calculateOverallProgress, getCategoriesCompleted, getDaysSinceStart } from '@/lib/utils';
+import { calculateOverallProgress, getCategoriesCompleted, getEstimatedHoursRemaining, formatHoursEstimate } from '@/lib/utils';
 import { Card } from '@/components/ui/Card';
 
 export function OverallProgress() {
   const completedSkills = useProgressStore((s) => s.completedSkills);
   const completedProjects = useProgressStore((s) => s.completedProjects);
-  const createdAt = useProgressStore((s) => s.createdAt);
 
   const overall = calculateOverallProgress(roadmap, completedSkills);
   const categoriesCompleted = getCategoriesCompleted(roadmap, completedSkills);
   const totalCategories = roadmap.categories.length;
-  const days = createdAt ? getDaysSinceStart(createdAt) : 1;
+  const estimatedHours = getEstimatedHoursRemaining(roadmap, completedSkills);
 
   const circumference = 2 * Math.PI * 54;
   const offset = circumference - (overall.percentage / 100) * circumference;
@@ -43,9 +42,9 @@ export function OverallProgress() {
       bgColor: 'bg-violet-500/10',
     },
     {
-      label: 'Dias',
-      value: `${days}`,
-      icon: Calendar,
+      label: 'Estimativa',
+      value: formatHoursEstimate(estimatedHours),
+      icon: Clock,
       color: 'text-amber-400',
       bgColor: 'bg-amber-500/10',
     },
