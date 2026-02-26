@@ -25,7 +25,7 @@ export function ProgressBar({
   className,
 }: ProgressBarProps) {
   return (
-    <div className={cn('w-full', className)}>
+    <div className={cn('w-full', className)} role="progressbar" aria-valuenow={percentage} aria-valuemin={0} aria-valuemax={100} aria-label={`Progresso: ${percentage}%`}>
       {showLabel && (
         <div className="flex justify-between items-center mb-1.5">
           <span className="text-xs text-gray-400">Progresso</span>

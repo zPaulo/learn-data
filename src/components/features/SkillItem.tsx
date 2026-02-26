@@ -17,6 +17,7 @@ interface SkillItemProps {
 export function SkillItem({ skill, checked, onToggle, gradientClasses, index }: SkillItemProps) {
   return (
     <motion.div
+      role="listitem"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03, duration: 0.3 }}
@@ -30,8 +31,10 @@ export function SkillItem({ skill, checked, onToggle, gradientClasses, index }: 
         checked={checked}
         onChange={onToggle}
         gradientClasses={gradientClasses}
+        aria-label={`Marcar "${skill.title}" como ${checked ? 'não concluída' : 'concluída'}`}
       />
       <span
+        id={`skill-label-${skill.id}`}
         className={cn(
           'flex-1 text-sm transition-all duration-300',
           checked ? 'text-gray-500 line-through' : 'text-gray-200'

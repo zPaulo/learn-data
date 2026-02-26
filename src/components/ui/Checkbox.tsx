@@ -8,6 +8,7 @@ interface CheckboxProps {
   onChange: () => void;
   gradientClasses?: string;
   className?: string;
+  'aria-label'?: string;
 }
 
 export function Checkbox({
@@ -15,11 +16,13 @@ export function Checkbox({
   onChange,
   gradientClasses = 'from-blue-500 to-cyan-500',
   className,
+  'aria-label': ariaLabel,
 }: CheckboxProps) {
   return (
     <button
       role="checkbox"
       aria-checked={checked}
+      aria-label={ariaLabel}
       onClick={onChange}
       className={cn(
         'relative w-5 h-5 rounded-md border-2 transition-all duration-200 flex items-center justify-center shrink-0 cursor-pointer',
