@@ -20,11 +20,16 @@ function debouncedSync(completedSkills: string[], completedProjects: string[]) {
   }, 800);
 }
 
+function todayDateString(): string {
+  return new Date().toISOString().split('T')[0];
+}
+
 interface ProgressState {
   username: string | null;
   createdAt: string | null;
   completedSkills: string[];
   completedProjects: string[];
+  activityLog: string[];
   isDbMode: boolean;
   isLoading: boolean;
 
@@ -50,6 +55,7 @@ export const useProgressStore = create<ProgressState>()(
       createdAt: null,
       completedSkills: [],
       completedProjects: [],
+      activityLog: [],
       isDbMode: false,
       isLoading: false,
 
@@ -83,29 +89,34 @@ export const useProgressStore = create<ProgressState>()(
           createdAt: null,
           completedSkills: [],
           completedProjects: [],
+          activityLog: [],
           isDbMode: false,
         });
       },
 
       toggleSkill: (skillId: string) => {
-        const { completedSkills, completedProjects, isDbMode } = get();
+        const { completedSkills, completedProjects, activityLog, isDbMode } = get();
         const isCompleted = completedSkills.includes(skillId);
         const newSkills = isCompleted
           ? completedSkills.filter((id) => id !== skillId)
           : [...completedSkills, skillId];
-        set({ completedSkills: newSkills });
+        const today = todayDateString();
+        const newLog = activityLog.includes(today) ? activityLog : [...activityLog, today];
+        set({ completedSkills: newSkills, activityLog: newLog });
         if (isDbMode) {
           debouncedSync(newSkills, completedProjects);
         }
       },
 
       toggleProject: (projectId: string) => {
-        const { completedProjects, completedSkills, isDbMode } = get();
+        const { completedProjects, completedSkills, activityLog, isDbMode } = get();
         const isCompleted = completedProjects.includes(projectId);
         const newProjects = isCompleted
           ? completedProjects.filter((id) => id !== projectId)
           : [...completedProjects, projectId];
-        set({ completedProjects: newProjects });
+        const today = todayDateString();
+        const newLog = activityLog.includes(today) ? activityLog : [...activityLog, today];
+        set({ completedProjects: newProjects, activityLog: newLog });
         if (isDbMode) {
           debouncedSync(completedSkills, newProjects);
         }
