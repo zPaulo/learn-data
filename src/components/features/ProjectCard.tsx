@@ -84,14 +84,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {projectSkills.map((skill) => (
               <span
                 key={skill.id}
+                title={skill.title}
                 className={cn(
-                  'text-[10px] px-2 py-0.5 rounded-md border transition-all',
+                  'text-[10px] px-2 py-0.5 rounded-md border transition-all cursor-default',
                   skill.completed
-                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                    : 'bg-white/5 text-gray-500 border-white/5'
+                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 line-through decoration-emerald-600/30'
+                    : 'bg-white/[0.03] text-gray-500 border-white/[0.06] hover:bg-white/[0.06] hover:text-gray-400'
                 )}
               >
-                {skill.title.length > 30 ? skill.title.slice(0, 30) + '...' : skill.title}
+                {skill.title.length > 35 ? skill.title.slice(0, 35) + '...' : skill.title}
               </span>
             ))}
           </div>
