@@ -94,7 +94,7 @@ export function CompletionCelebration() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="mb-10"
     >
-      <Card className="relative overflow-hidden border-yellow-500/20 bg-gradient-to-br from-yellow-500/5 via-purple-500/5 to-blue-500/5">
+      <Card className="relative overflow-hidden border-yellow-500/20 bg-gradient-to-br from-yellow-500/5 via-purple-500/5 to-blue-500/5 shadow-2xl shadow-yellow-500/5">
         {/* Animated background particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(6)].map((_, i) => (
