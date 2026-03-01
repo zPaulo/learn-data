@@ -81,13 +81,16 @@ export default function DashboardPage() {
           transition={{ duration: 0.5 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center shadow-lg">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
               <FolderKanban className="w-5 h-5 text-white" />
             </div>
-            <div>
-              <h2 className="text-lg font-bold text-white">Projetos de Portfólio</h2>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-bold text-white tracking-tight">Projetos de Portfolio</h2>
+                <span className="text-xs text-gray-500">{roadmap.projects.length} projetos</span>
+              </div>
               <p className="text-xs text-gray-400">
-                Projetos práticos que envolvem múltiplas habilidades para montar seu portfólio
+                Projetos praticos que envolvem multiplas habilidades para montar seu portfolio
               </p>
             </div>
           </div>
