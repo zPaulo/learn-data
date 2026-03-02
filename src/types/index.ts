@@ -1,7 +1,9 @@
+export type ResourceType = 'video' | 'article' | 'course' | 'docs';
+
 export interface Resource {
   label: string;
   url: string;
-  type: 'video' | 'article' | 'course' | 'docs';
+  type: ResourceType;
 }
 
 export interface Skill {
