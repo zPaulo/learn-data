@@ -5,6 +5,8 @@ import { useProgressStore } from '@/stores/useProgressStore';
 
 interface StreakInfo {
   currentStreak: number;
+  longestStreak: number;
+  totalActiveDays: number;
   lastActiveDate: string | null;
   isActiveToday: boolean;
 }
@@ -24,7 +26,7 @@ export function useStreak(): StreakInfo {
 
   return useMemo(() => {
     if (!activityLog || activityLog.length === 0) {
-      return { currentStreak: 0, lastActiveDate: null, isActiveToday: false };
+      return { currentStreak: 0, longestStreak: 0, totalActiveDays: 0, lastActiveDate: null, isActiveToday: false };
     }
 
     const uniqueDays = [...new Set(activityLog)].sort().reverse();
@@ -54,8 +56,12 @@ export function useStreak(): StreakInfo {
       }
     }
 
+    const longestStreak = Math.max(streak, uniqueDays.length > 0 ? 1 : 0);
+
     return {
       currentStreak: streak,
+      longestStreak,
+      totalActiveDays: uniqueDays.length,
       lastActiveDate: uniqueDays[0] || null,
       isActiveToday,
     };
