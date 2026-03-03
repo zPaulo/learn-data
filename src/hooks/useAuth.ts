@@ -10,6 +10,7 @@ export function useAuth() {
   const loginLocal = useProgressStore((s) => s.loginLocal);
   const loginWithDb = useProgressStore((s) => s.loginWithDb);
   const logout = useProgressStore((s) => s.logout);
+  const isLoading = useProgressStore((s) => s.isLoading);
   const hydrated = useHydration();
 
   return {
@@ -17,6 +18,7 @@ export function useAuth() {
     createdAt,
     isLoggedIn: !!username,
     isDbMode,
+    isLoading,
     hydrated,
     loginLocal,
     loginWithDb,
