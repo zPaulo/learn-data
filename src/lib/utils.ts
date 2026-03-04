@@ -71,7 +71,12 @@ export function formatHoursEstimate(hours: number): string {
   if (hours === 0) return 'Completo!';
   if (hours < 10) return `~${hours}h restantes`;
   const weeks = Math.round(hours / 10);
-  return `~${hours}h (~${weeks} semana${weeks > 1 ? 's' : ''} a 10h/sem)`;
+  return `~${hours}h (~${weeks} sem.)`;
+}
+
+export function formatPercentage(completed: number, total: number): string {
+  if (total === 0) return '0%';
+  return `${Math.round((completed / total) * 100)}%`;
 }
 
 export function getProjectReadiness(
