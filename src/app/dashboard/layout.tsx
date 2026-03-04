@@ -37,9 +37,9 @@ export default function DashboardLayout({
   return (
     <div className="flex min-h-screen">
       <Sidebar onExportClick={() => setShowExport(true)} />
-      <main className="flex-1 lg:ml-72 min-h-screen pb-20 lg:pb-0">
+      <main className="flex-1 lg:ml-72 min-h-screen pb-20 lg:pb-0" role="main">
         <Header />
-        <div className="px-4 lg:px-8 py-6 max-w-5xl mx-auto">
+        <div className="px-4 lg:px-8 py-6 max-w-5xl mx-auto" aria-live="polite">
           {children}
         </div>
       </main>
