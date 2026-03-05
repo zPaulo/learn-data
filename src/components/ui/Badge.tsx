@@ -9,10 +9,10 @@ interface BadgeProps {
 }
 
 const variantClasses = {
-  beginner: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20',
-  intermediate: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/20',
-  advanced: 'bg-rose-500/15 text-rose-400 border-rose-500/20',
-  default: 'bg-white/10 text-gray-300 border-white/10',
+  beginner: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-sm shadow-emerald-500/5',
+  intermediate: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20 shadow-sm shadow-yellow-500/5',
+  advanced: 'bg-rose-500/10 text-rose-400 border-rose-500/20 shadow-sm shadow-rose-500/5',
+  default: 'bg-white/[0.06] text-gray-300 border-white/[0.08]',
 };
 
 const labels: Record<string, string> = {
