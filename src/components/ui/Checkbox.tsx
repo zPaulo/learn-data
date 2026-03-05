@@ -23,12 +23,12 @@ export function Checkbox({
       role="checkbox"
       aria-checked={checked}
       aria-label={ariaLabel}
-      onClick={onChange}
+      onClick={(e) => { e.stopPropagation(); onChange(); }}
       className={cn(
         'relative w-5 h-5 rounded-md border-2 transition-all duration-200 flex items-center justify-center shrink-0 cursor-pointer',
         checked
-          ? `bg-gradient-to-r ${gradientClasses} border-transparent`
-          : 'border-white/20 hover:border-white/40 bg-transparent',
+          ? `bg-gradient-to-r ${gradientClasses} border-transparent shadow-sm`
+          : 'border-white/15 hover:border-white/30 bg-transparent hover:bg-white/[0.03]',
         className
       )}
     >
