@@ -32,14 +32,14 @@ export function ProgressBar({
           <span className="text-xs font-medium text-gray-300">{percentage}%</span>
         </div>
       )}
-      <div className={cn('w-full rounded-full bg-white/10 overflow-hidden relative', sizeClasses[size])}>
+      <div className={cn('w-full rounded-full bg-white/[0.06] overflow-hidden relative', sizeClasses[size])}>
         <motion.div
           className={cn('h-full rounded-full bg-gradient-to-r relative overflow-hidden', gradientClasses)}
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
         >
-          {percentage > 0 && (
+          {percentage > 0 && percentage < 100 && (
             <div className="absolute inset-0 progress-shimmer" />
           )}
         </motion.div>
