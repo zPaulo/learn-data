@@ -22,10 +22,11 @@ export function SkillItem({ skill, checked, onToggle, gradientClasses, index }: 
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03, duration: 0.3 }}
       className={cn(
-        'flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200',
-        'hover:bg-white/[0.03] group',
-        checked && 'bg-white/[0.02]'
+        'flex items-center gap-3 px-4 py-3 transition-all duration-200',
+        'hover:bg-white/[0.04] group cursor-pointer',
+        checked && 'bg-emerald-500/[0.02]'
       )}
+      onClick={onToggle}
     >
       <Checkbox
         checked={checked}
@@ -37,7 +38,7 @@ export function SkillItem({ skill, checked, onToggle, gradientClasses, index }: 
         id={`skill-label-${skill.id}`}
         className={cn(
           'flex-1 text-sm transition-all duration-300',
-          checked ? 'text-gray-500 line-through' : 'text-gray-200'
+          checked ? 'text-gray-500 line-through decoration-gray-600' : 'text-gray-200 group-hover:text-white'
         )}
       >
         {skill.title}
