@@ -47,28 +47,34 @@ export function CategorySection({ category }: CategorySectionProps) {
       {/* Category header */}
       <div className="flex items-start gap-4 mb-4">
         <div className={cn(
-          'w-10 h-10 rounded-xl bg-gradient-to-r flex items-center justify-center shrink-0 shadow-lg',
-          category.color
+          'w-11 h-11 rounded-xl bg-gradient-to-br flex items-center justify-center shrink-0 shadow-lg',
+          category.color,
+          progress.percentage === 100 && 'ring-2 ring-emerald-500/30 ring-offset-2 ring-offset-[#030712]'
         )}>
           <Icon className="w-5 h-5 text-white" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-3 mb-1">
-            <h2 className="text-lg font-bold text-white">{category.title}</h2>
-            <span className="text-xs text-gray-500 shrink-0">
+            <h2 className="text-lg font-bold text-white tracking-tight">{category.title}</h2>
+            <span className={cn(
+              'text-xs font-medium shrink-0 px-2 py-0.5 rounded-md',
+              progress.percentage === 100
+                ? 'bg-emerald-500/10 text-emerald-400'
+                : 'text-gray-500'
+            )}>
               {progress.completed}/{progress.total}
             </span>
           </div>
-          <p className="text-xs text-gray-400 mb-2">{category.description}</p>
+          <p className="text-xs text-gray-400 mb-2.5 leading-relaxed">{category.description}</p>
           <div className="flex gap-3 mb-3 text-[10px]">
             {difficultyCount.beginner > 0 && (
-              <span className="text-emerald-400">{difficultyCount.beginner} iniciante{difficultyCount.beginner > 1 ? 's' : ''}</span>
+              <span className="text-emerald-400/80">{difficultyCount.beginner} iniciante{difficultyCount.beginner > 1 ? 's' : ''}</span>
             )}
             {difficultyCount.intermediate > 0 && (
-              <span className="text-yellow-400">{difficultyCount.intermediate} intermediário{difficultyCount.intermediate > 1 ? 's' : ''}</span>
+              <span className="text-yellow-400/80">{difficultyCount.intermediate} intermediario{difficultyCount.intermediate > 1 ? 's' : ''}</span>
             )}
             {difficultyCount.advanced > 0 && (
-              <span className="text-rose-400">{difficultyCount.advanced} avançado{difficultyCount.advanced > 1 ? 's' : ''}</span>
+              <span className="text-rose-400/80">{difficultyCount.advanced} avancado{difficultyCount.advanced > 1 ? 's' : ''}</span>
             )}
           </div>
           <ProgressBar
