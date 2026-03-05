@@ -16,7 +16,7 @@ export function OverallProgress() {
   const totalCategories = roadmap.categories.length;
   const estimatedHours = getEstimatedHoursRemaining(roadmap, completedSkills);
 
-  const circumference = 2 * Math.PI * 54;
+  const circumference = 2 * Math.PI * 58;
   const offset = circumference - (overall.percentage / 100) * circumference;
 
   const stats = [
@@ -51,22 +51,22 @@ export function OverallProgress() {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-8 mb-10">
+    <div className="flex flex-col md:flex-row items-center gap-8 mb-10 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
       {/* Ring chart */}
       <div className="relative shrink-0">
-        <svg width="140" height="140" className="-rotate-90">
+        <svg width="150" height="150" className="-rotate-90">
           <circle
-            cx="70"
-            cy="70"
-            r="54"
+            cx="75"
+            cy="75"
+            r="58"
             fill="none"
             stroke="rgba(255,255,255,0.05)"
             strokeWidth="10"
           />
           <motion.circle
-            cx="70"
-            cy="70"
-            r="54"
+            cx="75"
+            cy="75"
+            r="58"
             fill="none"
             stroke="url(#progressGradient)"
             strokeWidth="10"
@@ -79,13 +79,14 @@ export function OverallProgress() {
           <defs>
             <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="50%" stopColor="#8b5cf6" />
               <stop offset="100%" stopColor="#06b6d4" />
             </linearGradient>
           </defs>
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <motion.span
-            className="text-3xl font-bold text-white"
+            className="text-3xl font-extrabold bg-gradient-to-b from-white to-gray-400 gradient-text"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
