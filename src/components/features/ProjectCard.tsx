@@ -40,13 +40,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <Card className={cn('overflow-hidden', isProjectDone && 'border-emerald-500/20')}>
+      <Card className={cn('overflow-hidden', isProjectDone && 'border-emerald-500/20 bg-emerald-500/[0.02]')}>
         {/* Gradient header */}
-        <div className="h-1.5 -mt-6 -mx-6 mb-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
+        <div className="h-1 -mt-6 -mx-6 mb-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-80" />
 
         <div className="flex items-start justify-between gap-3 mb-3">
-          <h3 className="text-base font-bold text-white">{project.title}</h3>
-          <div className="flex items-center gap-2 shrink-0">
+          <h3 className="text-base font-bold text-white leading-tight">{project.title}</h3>
+          <div className="flex items-center gap-1.5 shrink-0">
             <DifficultyBadge difficulty={project.difficulty} />
             <Badge>
               <Clock className="w-3 h-3 mr-1" />
@@ -58,9 +58,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <p className="text-sm text-gray-400 mb-4 leading-relaxed">{project.description}</p>
 
         {/* Objective */}
-        <div className="mb-4 p-3 rounded-xl bg-white/[0.03] border border-white/5">
-          <p className="text-xs text-gray-500 mb-1 font-medium">Objetivo</p>
-          <p className="text-xs text-gray-300">{project.objective}</p>
+        <div className="mb-4 p-4 rounded-xl bg-gradient-to-r from-indigo-500/[0.04] to-purple-500/[0.04] border border-indigo-500/10">
+          <p className="text-[10px] uppercase tracking-wider text-indigo-400 mb-1.5 font-semibold">Objetivo</p>
+          <p className="text-xs text-gray-300 leading-relaxed">{project.objective}</p>
         </div>
 
         {/* Skills readiness */}
@@ -99,11 +99,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Deliverables */}
         <div className="mb-5">
-          <p className="text-xs font-medium text-gray-400 mb-2">Entregas</p>
-          <ul className="space-y-1.5">
+          <p className="text-[10px] uppercase tracking-wider font-semibold text-gray-500 mb-2.5">Entregas</p>
+          <ul className="space-y-2">
             {project.deliverables.map((d, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-gray-400">
-                <CheckCircle2 className="w-3.5 h-3.5 text-gray-600 shrink-0 mt-0.5" />
+              <li key={i} className="flex items-start gap-2.5 text-xs text-gray-400">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500/40 shrink-0 mt-0.5" />
                 {d}
               </li>
             ))}
