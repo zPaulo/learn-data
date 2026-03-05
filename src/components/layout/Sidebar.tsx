@@ -25,15 +25,15 @@ export function Sidebar({ onExportClick }: SidebarProps) {
   };
 
   return (
-    <aside className="hidden lg:flex lg:flex-col lg:fixed lg:w-72 lg:h-screen bg-gray-950/80 backdrop-blur-xl border-r border-white/5 z-40">
+    <aside className="hidden lg:flex lg:flex-col lg:fixed lg:w-72 lg:h-screen bg-gray-950/90 backdrop-blur-2xl border-r border-white/[0.06] z-40">
       {/* Logo */}
-      <div className="p-6 border-b border-white/5">
+      <div className="p-6 border-b border-white/[0.06]">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-            <BarChart3 className="w-4 h-4 text-white" />
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <BarChart3 className="w-4.5 h-4.5 text-white" />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-white">Trilha Data Analyst</h1>
+            <h1 className="text-sm font-bold text-white tracking-tight">Trilha Data Analyst</h1>
             <p className="text-[10px] text-gray-500">Do zero ao Junior</p>
           </div>
         </div>
@@ -99,21 +99,21 @@ export function Sidebar({ onExportClick }: SidebarProps) {
       </nav>
 
       {/* Bottom */}
-      <div className="p-4 border-t border-white/5 space-y-3">
+      <div className="p-4 border-t border-white/[0.06] space-y-3">
         <button
           onClick={onExportClick}
-          className="w-full flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer"
+          className="w-full flex items-center gap-2 px-3 py-2.5 text-xs text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all cursor-pointer"
         >
           <Download className="w-3.5 h-3.5" />
           Exportar / Importar
         </button>
-        <div className="flex items-center gap-2 px-3">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+        <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/[0.03]">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-sm">
             <span className="text-[10px] font-bold text-white uppercase">
               {username?.[0] || '?'}
             </span>
           </div>
-          <span className="text-xs text-gray-400 truncate">{username}</span>
+          <span className="text-xs text-gray-300 truncate font-medium">{username}</span>
         </div>
       </div>
     </aside>
