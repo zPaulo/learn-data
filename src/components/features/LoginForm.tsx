@@ -70,9 +70,10 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
       {/* Background gradient orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/8 rounded-full blur-[100px] animate-pulse-slow" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/8 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px]" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
 
       <motion.div
         className="relative z-10 w-full max-w-md"
@@ -82,9 +83,13 @@ export function LoginForm({ onLogin }: LoginFormProps) {
       >
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-xl shadow-blue-500/20">
+          <motion.div
+            className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-500 to-cyan-500 flex items-center justify-center shadow-2xl shadow-blue-500/30"
+            animate={{ rotate: [0, 2, -2, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          >
             <BarChart3 className="w-8 h-8 text-white" />
-          </div>
+          </motion.div>
         </div>
 
         {/* Title */}
@@ -112,17 +117,17 @@ export function LoginForm({ onLogin }: LoginFormProps) {
 
         {/* Features */}
         <motion.div
-          className="flex justify-center gap-6 mb-8"
+          className="flex justify-center gap-3 mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
           {[
-            { label: '74 Skills', sublabel: '8 categorias' },
-            { label: '3 Projetos', sublabel: 'portfólio' },
-            { label: '100%', sublabel: 'gratuito' },
+            { label: '74 Skills', sublabel: '8 categorias', color: 'from-blue-500/10 to-cyan-500/10 border-blue-500/10' },
+            { label: '3 Projetos', sublabel: 'portfolio', color: 'from-purple-500/10 to-pink-500/10 border-purple-500/10' },
+            { label: '100%', sublabel: 'gratuito', color: 'from-emerald-500/10 to-teal-500/10 border-emerald-500/10' },
           ].map((item) => (
-            <div key={item.label} className="text-center">
+            <div key={item.label} className={`text-center px-4 py-2.5 rounded-xl bg-gradient-to-b ${item.color} border`}>
               <p className="text-sm font-bold text-white">{item.label}</p>
               <p className="text-[10px] text-gray-500">{item.sublabel}</p>
             </div>
