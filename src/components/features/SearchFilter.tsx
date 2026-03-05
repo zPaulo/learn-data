@@ -40,13 +40,13 @@ export function SearchFilter({
       {/* Search input */}
       <div
         className={cn(
-          'flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all duration-200',
+          'flex items-center gap-3 px-4 py-3 rounded-2xl border transition-all duration-300',
           isFocused
-            ? 'bg-white/[0.06] border-white/20'
-            : 'bg-white/[0.03] border-white/5 hover:border-white/10'
+            ? 'bg-white/[0.06] border-blue-500/30 shadow-lg shadow-blue-500/5'
+            : 'bg-white/[0.02] border-white/[0.06] hover:border-white/10'
         )}
       >
-        <Search className="w-4 h-4 text-gray-500 shrink-0" />
+        <Search className={cn('w-4 h-4 shrink-0 transition-colors', isFocused ? 'text-blue-400' : 'text-gray-500')} />
         <input
           type="text"
           placeholder="Buscar habilidades..."
@@ -54,29 +54,29 @@ export function SearchFilter({
           onChange={(e) => onSearchChange(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          className="flex-1 bg-transparent text-sm text-gray-200 placeholder-gray-500 outline-none"
+          className="flex-1 bg-transparent text-sm text-gray-200 placeholder-gray-600 outline-none"
         />
         {searchQuery && (
           <button
             onClick={() => onSearchChange('')}
-            className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
+            className="w-6 h-6 flex items-center justify-center rounded-md bg-white/5 text-gray-500 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
 
       {/* Difficulty filter */}
-      <div className="flex gap-2">
+      <div className="flex gap-1.5 p-1 rounded-xl bg-white/[0.02]">
         {difficultyOptions.map((option) => (
           <button
             key={option.value}
             onClick={() => onDifficultyChange(option.value)}
             className={cn(
-              'px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-200 cursor-pointer',
+              'flex-1 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 cursor-pointer',
               difficultyFilter === option.value
-                ? difficultyColors[option.value]
-                : 'bg-transparent border-white/5 text-gray-500 hover:text-gray-300 hover:border-white/10'
+                ? cn(difficultyColors[option.value], 'border')
+                : 'text-gray-500 hover:text-gray-300 hover:bg-white/[0.04]'
             )}
           >
             {option.label}
