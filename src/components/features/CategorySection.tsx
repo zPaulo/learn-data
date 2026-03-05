@@ -119,7 +119,7 @@ export function CategorySection({ category }: CategorySectionProps) {
       )}
 
       {/* Skills list */}
-      <div role="list" aria-label={`Habilidades de ${category.title}`} className="ml-0 mt-4 rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden divide-y divide-white/5">
+      <div role="list" aria-label={`Habilidades de ${category.title}`} className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.015] overflow-hidden divide-y divide-white/[0.04]">
         {category.skills.map((skill, index) => (
           <SkillItem
             key={skill.id}
